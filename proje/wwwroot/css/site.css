@@ -1,0 +1,157 @@
+html {
+  font-size: 14px;
+  background-color: black;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: black;
+  color: white; /* Yazılar görünmez olmasın diye */
+}
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+.tam-ekran-gorsel-kapsayici {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.tam-ekran-gorsel {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.container,
+.container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  max-width: 100% !important;
+}
+
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+body, html {
+  max-width: 100%;
+  max-height: 100%;
+  overflow-x: hidden;
+}
+
+.kutucuklar-konteyner {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.kutucuk {
+  flex: 1;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.kutucuk:nth-child(1),
+.kutucuk:nth-child(2),
+.kutucuk:nth-child(3) {
+  background-color: #000000;
+}
+
+.kutucuk-icerik {
+  padding: 20px;
+  z-index: 2;
+}
+
+.kutucuk h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.kutucuk p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.kutucuk-ikon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.kutucuk:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.kutucuk::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.kutucuk:hover::after {
+  height: 10px;
+}
+
+@media (max-width: 768px) {
+  .kutucuklar-konteyner {
+    flex-direction: column;
+  }
+
+  .kutucuk {
+    width: 100%;
+  }
+}

@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Admin Girişi";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+<h2 class="text-center my-4">Admin Girişi</h2>
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="card shadow p-4" style="width: 350px;">
+        <form asp-action="login" asp-controller="Home" asp-area="Admin" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Kullanıcı Adı</label>
+                <input type="text" id="username" name="username" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Şifre</label>
+                <input type="password" id="password" name="password" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Giriş</button>
+        </form>
+        @if (ViewBag.Error != null)
+        {
+            <p class="text-danger mt-3 text-center">@ViewBag.Error</p>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,43 @@
+@model List<proje.Models.Sikayet>
+
+<style>
+    .sikayet-tablosu {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .table td, .table th {
+        vertical-align: middle;
+        text-align: center;
+        word-break: break-word;
+    }
+
+    .table th {
+        background-color: #007bff;
+        color: white;
+    }
+</style>
+
+<h2 class="mb-4 text-primary">Şikayetler</h2>
+
+<div class="sikayet-tablosu">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Kullanıcı Adı</th>
+                <th>Kullanıcı Soyadı</th>
+                <th>Yorum</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Ad</td>
+                <td>@item.Soyad</td>
+                <td>@item.Icerik</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Admin Panel";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Admin Panel</h2>
+<p>Merhaba Admin!</p>
+
+<div style="display: flex; gap: 20px;">
+
+    <a href="/Admin/Admin/Yorumlar" style="flex: 1; text-decoration: none; color: inherit;">
+        <div style="border: 2px solid #28a745; padding: 40px; border-radius: 10px; text-align: center; cursor: pointer; transition: background-color 0.3s;">
+            <h3>Yorumlar </h3>
+        </div>
+    </a>
+
+    <a href="/Admin/Admin/Sikayetler" style="flex: 1; text-decoration: none; color: inherit;">
+        <div style="border: 2px solid #ffc107; padding: 40px; border-radius: 10px; text-align: center; cursor: pointer; transition: background-color 0.3s;">
+            <h3>Şikayetler </h3>
+        </div>
+    </a>
+</div>
+
+<style>
+    a div:hover {
+        background-color: #f0f0f0;
+    }
+</style>

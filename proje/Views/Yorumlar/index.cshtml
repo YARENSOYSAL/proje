@@ -1,0 +1,157 @@
+@model List<Yorum>
+@{
+    ViewData["Title"] = "Yorumlar";
+}
+
+<style>
+    .yorum-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .yorum-kutusu {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .yorum-baslik {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    form div {
+        margin-bottom: 10px;
+    }
+
+    form input, form textarea {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    form button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    form button:hover {
+        background-color: #0056b3;
+    }
+
+    #tes {
+        color: black;
+    }
+
+    .yorum-islemler {
+        margin-top: 10px;
+    }
+
+    .yorum-islemler form,
+    .yorum-islemler a {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .yorum-islemler button {
+        background-color: #dc3545;
+    }
+
+    .yorum-islemler button:hover {
+        background-color: #b02a37;
+    }
+
+    .guncelle-link {
+        background-color: #28a745;
+        padding: 8px 12px;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .guncelle-link:hover {
+        background-color: #1e7e34;
+    }
+</style>
+
+<h2>Yorumlar</h2>
+
+<!-- Yorum Ekleme Formu -->
+<form asp-action="Ekle" method="post">
+    <div>
+        <label>Ad:</label>
+        <input type="text" name="Ad" required />
+    </div>
+    <div>
+        <label>Soyad:</label>
+        <input type="text" name="Soyad" required />
+    </div>
+    <div>
+        <label>Yorum:</label>
+        <textarea name="Icerik" rows="4" required></textarea>
+    </div>
+    <button type="submit">Yorumu Ekle</button>
+</form>
+
+<hr />
+<div id="tes">
+<!-- Yorumları Listele -->
+@if (Model != null && Model.Any())
+{
+    <div class="yorum-container">
+        @foreach (var yorum in Model)
+        {
+            <div class="yorum-kutusu">
+                @* Eğer güncelleme modu aktif ise güncelleme formunu göster *@
+                @if (ViewBag.GuncelleId != null && ViewBag.GuncelleId == yorum.Id)
+                {
+                    <form asp-action="Guncelle" method="post">
+                        <input type="hidden" name="Id" value="@yorum.Id" />
+                        <div>
+                            <label>Ad:</label>
+                            <input type="text" name="Ad" value="@yorum.Ad" required />
+                        </div>
+                        <div>
+                            <label>Soyad:</label>
+                            <input type="text" name="Soyad" value="@yorum.Soyad" required />
+                        </div>
+                        <div>
+                            <label>Yorum:</label>
+                            <textarea name="Icerik" rows="4" required>@yorum.Icerik</textarea>
+                        </div>
+                        <button type="submit">Kaydet</button>
+                        <a href="@Url.Action("Index")" style="margin-left:10px;">İptal</a>
+                    </form>
+                }
+                else
+                {
+                    <div class="yorum-baslik">@yorum.Ad @yorum.Soyad:</div>
+                    <div>@yorum.Icerik</div>
+
+                    <div class="yorum-islemler">
+                        <a class="guncelle-link" href="@Url.Action("Index", new { guncelleId = yorum.Id })">Güncelle</a>
+
+                        <form asp-action="Sil" method="post">
+                            <input type="hidden" name="id" value="@yorum.Id" />
+                            <button type="submit">Sil</button>
+                        </form>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>Henüz yorum eklenmemiş.</p>
+}
+</div>

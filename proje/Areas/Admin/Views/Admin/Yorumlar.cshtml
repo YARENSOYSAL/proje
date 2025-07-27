@@ -1,0 +1,44 @@
+@model List<proje.Models.Yorum>
+
+<style>
+    .yorum-tablosu {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .table th {
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+    }
+
+    .table td {
+        vertical-align: middle;
+        text-align: center;
+        word-break: break-word;
+    }
+</style>
+
+<h2 class="mb-4 text-primary">Yorumlar</h2>
+
+<div class="yorum-tablosu">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Kullanıcı Adı</th>
+                <th>Kullanıcı Soyadı</th>
+                <th>Yorum</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Ad</td>
+                <td>@item.Soyad</td>
+                <td>@item.Icerik</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
